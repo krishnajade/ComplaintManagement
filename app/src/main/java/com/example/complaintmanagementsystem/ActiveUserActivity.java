@@ -11,7 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.complaintmanagementsystem.fragments.ComplaintHistoryFragment;
 import com.example.complaintmanagementsystem.fragments.HomeFragment;
+import com.example.complaintmanagementsystem.fragments.LogComplaintFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class ActiveUserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -40,6 +42,12 @@ public class ActiveUserActivity extends AppCompatActivity implements NavigationV
         switch (item.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                break;
+            case R.id.nav_log_complaint:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LogComplaintFragment()).commit();
+                break;
+            case R.id.nav_complaint_history:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ComplaintHistoryFragment()).commit();
                 break;
             case R.id.nav_logout:
                 Intent intent = new Intent(this, MainActivity.class);

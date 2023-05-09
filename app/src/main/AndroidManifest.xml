@@ -18,9 +18,6 @@
             android:name=".ActiveUserActivity"
             android:exported="false" />
         <activity
-            android:name=".UnregisteredUserActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,139 +1,131 @@
 <TableLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/attendance_table"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".fragments.HomeFragment">
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Complaint"
-    android:textSize="24sp"
-    android:textStyle="bold"/>
-
-
-
-<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/attendance_table"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/white">
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/class_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:text="Category:"/>
-    <TextView
-        android:id="@+id/text_view_class_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.15"
-        android:text=""/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_margin="8dp"
+            style="@style/CardViewStyle">
 
-    <Spinner
-        android:id="@+id/spinner_class"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_weight="0.15"
-        android:prompt="@string/class_prompt"
-        android:entries="@array/classes"
-        />
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.25"
-        android:text="SubCategory:"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
-    <TextView
-        android:id="@+id/text_view_section_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:text=""/>
+                <TextView
+                    android:id="@+id/complaints_not_processed_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"/>
 
-    <Spinner
-        android:id="@+id/spinner_section"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_weight="0.18"
-        android:prompt="@string/section_prompt"
-        android:entries="@array/section"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Complaints not processed yet"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_below="@id/complaints_not_processed_number"/>
 
-</LinearLayout>
+            </RelativeLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+        </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/submit_button"
-        android:layout_width="0dp"
-        android:layout_weight="0.5"
-        android:layout_height="wrap_content"
-        android:text="Submit "
-        android:layout_marginTop="10dp"
-        />
+    </TableRow>
 
-</LinearLayout>
+    <!-- Complaints Status in process -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            style="@style/CardViewStyle">
 
-<!--<ScrollView-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    >-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
-<!--    <TableLayout-->
-<!--        android:id="@+id/attendance1_table"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:divider="@drawable/table_row_divider"-->
-<!--        android:showDividers="middle"-->
-<!--        android:stretchColumns="*"-->
-<!--        android:paddingStart="15dp"-->
-<!--        android:paddingEnd="10dp">-->
+                <TextView
+                    android:id="@+id/complaints_status_in_process_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"/>
 
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:divider="@drawable/table_vertical_divider"-->
-<!--            android:showDividers="beginning|end">-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Complaints Status in process"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_below="@id/complaints_status_in_process_number"/>
 
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="Roll No."-->
-<!--                android:textStyle="bold"/>-->
+            </RelativeLayout>
 
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="3.2"-->
-<!--                android:text="Name"-->
-<!--                android:textStyle="bold"-->
-<!--                android:gravity="left"-->
-<!--                android:paddingLeft="20dp"/>-->
+        </androidx.cardview.widget.CardView>
 
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="3"-->
-<!--                android:text="Status"-->
-<!--                android:textStyle="bold"-->
-<!--                android:gravity="center"/>-->
-<!--        </TableRow>-->
+    </TableRow>
 
-<!--    </TableLayout>-->
+    <!-- Complaints Closed -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-<!--</ScrollView>-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            style="@style/CardViewStyle">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/complaints_closed_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Complaints Closed"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_below="@id/complaints_closed_number"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </TableRow>
 
 </TableLayout>

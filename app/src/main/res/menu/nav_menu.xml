@@ -10,6 +10,14 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/home"
             android:title="Home"/>
+        <item
+        android:id="@+id/nav_log_complaint"
+        android:icon="@drawable/log_complaint"
+        android:title="Log Complaint"/>
+        <item
+            android:id="@+id/nav_complaint_history"
+            android:icon="@drawable/history"
+            android:title="Complaint History"/>
     </group>
     <item
         android:title="">

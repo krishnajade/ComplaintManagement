@@ -1,0 +1,153 @@
+<TableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/attendance_table"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".fragments.LogComplaintFragment">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Complaint"
+    android:textSize="24sp"
+    android:textStyle="bold"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/class_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:text="Category:"/>
+    <TextView
+        android:id="@+id/text_view_class_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:text=""/>
+
+    <Spinner
+        android:id="@+id/spinner_class"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="0.15"
+        android:prompt="@string/class_prompt"
+        android:entries="@array/category"
+        />
+    <TextView
+        android:id="@+id/section_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:text="SubCategory:"/>
+
+    <TextView
+        android:id="@+id/text_view_section_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:text=""/>
+
+    <Spinner
+        android:id="@+id/spinner_section"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="0.18"
+        android:prompt="@string/section_prompt"
+        android:entries="@array/sub_category"/>
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/complaint_type_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="Complaint Type:"/>
+        <TextView
+            android:id="@+id/text_view_complaint_type_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:text=""/>
+
+        <Spinner
+            android:id="@+id/spinner_complaint_type"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="0.15"
+            android:prompt="@string/class_prompt"
+            android:entries="@array/complaint_type"
+            />
+        <TextView
+            android:id="@+id/state_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="State:"/>
+
+        <TextView
+            android:id="@+id/text_view_state_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text=""/>
+
+        <Spinner
+            android:id="@+id/spinner_state"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="0.18"
+            android:prompt="@string/section_prompt"
+            android:entries="@array/state"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nature_of_complaint_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nature of Complaint:"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/nature_of_complaint_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/complaint_details_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complaint Details:"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/complaint_details_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:minHeight="100dp"
+        android:hint="Enter complaint details here"
+        />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="10dp" />
+
+</TableLayout>

@@ -9,11 +9,20 @@
     <string name="class_prompt">Select class</string>
     <string name="section_prompt">Select section</string>
 
-    <string-array name="classes">
-        <item>10</item>
+    <string-array name="complaint_type">
+        <item>Complaint</item>
+        <item>General Query</item>
     </string-array>
 
-    <string-array name="section">
-        <item>F</item>
+    <string-array name="state">
+        <item>Maharashtra</item>
+    </string-array>
+
+    <string-array name="category">
+        <item>Software</item>
+    </string-array>
+
+    <string-array name="sub_category">
+        <item>Website</item>
     </string-array>
 </resources>

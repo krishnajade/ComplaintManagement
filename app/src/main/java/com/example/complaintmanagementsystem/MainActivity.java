@@ -86,25 +86,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
 
-                switch (response.body()) {
-                    case "Unregistered": {
-                        Intent intentu = new Intent(MainActivity.this, UnregisteredUserActivity.class);
-                        intentu.putExtra("username", username);
-                        startActivity(intentu);
-                        finish();
-                        break;
-                    }
-
-                    case "Active": {
-                        Intent intenta = new Intent(MainActivity.this, ActiveUserActivity.class);
-                        intenta.putExtra("username", username);
-                        startActivity(intenta);
-                        finish();
-                        break;
-                    }
-                    default:
-                        Toast.makeText(MainActivity.this, "Error: Invalid username or password", Toast.LENGTH_LONG).show();
-                        break;
+                if ("Active".equals(response.body())) {
+                    Intent intenta = new Intent(MainActivity.this, ActiveUserActivity.class);
+                    intenta.putExtra("username", username);
+                    startActivity(intenta);
+                    finish();
+                } else {
+                    Toast.makeText(MainActivity.this, "Error: Invalid username or password", Toast.LENGTH_LONG).show();
                 }
             }
             @Override
