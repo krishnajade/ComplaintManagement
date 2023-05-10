@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
 
                 if ("Login successfull".equals(response.body())) {
-                    Intent intenta = new Intent(MainActivity.this, ActiveUserActivity.class);
-                    intenta.putExtra("username", username);
-                    startActivity(intenta);
+                    Intent intent = new Intent(MainActivity.this, ActiveUserActivity.class);
+                    intent.putExtra("username", username);
+                    startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(MainActivity.this, "Error: Invalid username or password", Toast.LENGTH_LONG).show();

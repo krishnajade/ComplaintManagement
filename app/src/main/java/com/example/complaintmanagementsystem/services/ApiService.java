@@ -9,5 +9,4 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("calls.php?apicall=login")
     Call<String> login(@Field("userEmail") String username, @Field("password") String password);
-
 }
