@@ -1,6 +1,7 @@
 package com.example.complaintmanagementsystem.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,12 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.complaintmanagementsystem.MainActivity;
 import com.example.complaintmanagementsystem.R;
+import com.example.complaintmanagementsystem.services.ApiService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,12 +32,24 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LogComplaintFragment extends Fragment {
     Spinner spinnerCategory,spinnerSection,spinnerComplaintType,spinnerState;
     private List<Category> categoryList;
     TextView textViewCategoryLabel,textViewComplaintTypeLabel,textViewStateLabel,textViewSectionLabel ;
+    String selectedCategoryId;
+    String selectedSection;
+    String selectedComplaintType;
+    String selectedState;
 
     public LogComplaintFragment() {
         // Required empty public constructor
@@ -65,7 +83,7 @@ public class LogComplaintFragment extends Fragment {
         spinnerComplaintType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedComplaintType = parent.getItemAtPosition(position).toString();
+                 selectedComplaintType = parent.getItemAtPosition(position).toString();
                 textViewComplaintTypeLabel.setText(selectedComplaintType);
             }
 
@@ -78,7 +96,7 @@ public class LogComplaintFragment extends Fragment {
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedState=parent.getItemAtPosition(position).toString();
+                 selectedState=parent.getItemAtPosition(position).toString();
             textViewStateLabel.setText(selectedState);
             }
 
@@ -87,6 +105,70 @@ public class LogComplaintFragment extends Fragment {
 
             }
         });
+
+        Button submitButton = view.findViewById(R.id.submit_button);
+        submitButton.setOnClickListener(v -> {
+            // Get the values from the EditText and Spinners
+
+            int category = Integer.parseInt(selectedCategoryId);
+            String subcategory = selectedSection;
+            String complaintType = selectedComplaintType;
+            String state = selectedState;
+
+            EditText nocEditText = view.findViewById(R.id.nature_of_complaint_edittext);
+            String noc = nocEditText.getText().toString();
+
+            EditText complaintDetailsEditText = view.findViewById(R.id.complaint_details_edittext);
+            String complaintDetails = complaintDetailsEditText.getText().toString();
+
+            // Create a Retrofit instance
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://complaint.trifrnd.in/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            // Create an instance of the API interface
+            ApiService apiService = retrofit.create(ApiService.class);
+            // Make the API call
+            Call<String> call = apiService.logComplaint(category, subcategory, complaintType, state, noc, complaintDetails);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.isSuccessful()) {
+                        // Handle successful response
+                        if (response.body() != null) {
+                            // Handle the response body if needed
+                            String responseBody = response.body();
+                            if (responseBody.equals("OK")) {
+                                // Display a success message or perform any additional actions
+                                Toast.makeText(getContext(), "Complaint successfully logged", Toast.LENGTH_LONG).show();
+
+                            } else {
+                                Toast.makeText(getContext(), "Complaint Not Logged", Toast.LENGTH_LONG).show();
+                                // Handle unexpected response
+                                // Display an error message or handle the response appropriately
+                            }
+                        }  // Handle null response body
+                        // Display an error message or handle the response appropriately
+
+                    }  // Handle unsuccessful response
+                    // Display an error message or handle the response appropriately
+
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    // Handle the failure
+                    // Display an error message or handle the failure appropriately
+                }
+            });
+
+        });
+
+
+
+
+
 
         return view;
     }
@@ -154,7 +236,7 @@ public class LogComplaintFragment extends Fragment {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 Category selectedCategory = categoryList.get(position);
-                                String selectedCategoryId = selectedCategory.getId();
+                                 selectedCategoryId = selectedCategory.getId();
                                 String selectedCategoryName = selectedCategory.getName();
 
                                 // Set the selected category as the spinner's selected item
@@ -260,7 +342,7 @@ public class LogComplaintFragment extends Fragment {
                         spinnerSection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                String selectedSection = parent.getItemAtPosition(position).toString();
+                                 selectedSection = parent.getItemAtPosition(position).toString();
                                 textViewSectionLabel.setText(selectedSection);
                             }
 
