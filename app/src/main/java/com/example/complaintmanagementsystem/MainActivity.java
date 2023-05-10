@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnLogin = findViewById(R.id.login_button);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.trifrnd.in/services/eng/")
+                .baseUrl("https://complaint.trifrnd.in/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             String password = etPassword.getText().toString().trim();
             login(username, password);
         });
-
     }
     private boolean checkPermission(String permission) {
         int result = ContextCompat.checkSelfPermission(this, permission);
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
 
-                if ("Active".equals(response.body())) {
+                if ("Login successfull".equals(response.body())) {
                     Intent intenta = new Intent(MainActivity.this, ActiveUserActivity.class);
                     intenta.putExtra("username", username);
                     startActivity(intenta);
