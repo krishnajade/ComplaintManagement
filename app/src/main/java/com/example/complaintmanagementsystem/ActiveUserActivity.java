@@ -14,16 +14,40 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.complaintmanagementsystem.fragments.ComplaintHistoryFragment;
 import com.example.complaintmanagementsystem.fragments.HomeFragment;
 import com.example.complaintmanagementsystem.fragments.LogComplaintFragment;
+import com.example.complaintmanagementsystem.services.ApiService;
 import com.google.android.material.navigation.NavigationView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ActiveUserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawerLayout;
+    private ApiService apiService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_user);
         setTitle("Dashboard");
+
+        String username = getIntent().getStringExtra("username");
+        // Create an instance of Retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://complaint.trifrnd.in/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // Create an instance of the ApiService
+        apiService = retrofit.create(ApiService.class);
+
+        if (username != null && !username.isEmpty()) {
+            // Call the API endpoint
+            callApiEndpoint(username);
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -36,6 +60,32 @@ public class ActiveUserActivity extends AppCompatActivity implements NavigationV
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+    }
+    private void callApiEndpoint(String userEmail) {
+        // Make the API call
+        apiService.readUserId(userEmail).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String userId = response.body();
+
+                    // Use the userId as needed
+                    // Pass userId as argument to HomeFragment
+                    HomeFragment homeFragment = HomeFragment.newInstance(userId);
+
+                    // Replace the fragment container with HomeFragment
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, homeFragment)
+                            
+                            .commit();
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                // Handle the failure case
+                // ...
+            }
+        });
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -1,7 +1,6 @@
 package com.example.complaintmanagementsystem.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,9 +14,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import com.example.complaintmanagementsystem.MainActivity;
 import com.example.complaintmanagementsystem.R;
 import com.example.complaintmanagementsystem.services.ApiService;
 
@@ -32,16 +32,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 public class LogComplaintFragment extends Fragment {
     Spinner spinnerCategory,spinnerSection,spinnerComplaintType,spinnerState;
     private List<Category> categoryList;
@@ -54,14 +51,10 @@ public class LogComplaintFragment extends Fragment {
     public LogComplaintFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +62,6 @@ public class LogComplaintFragment extends Fragment {
         // Inflate the layout for this fragment
          spinnerCategory = view.findViewById(R.id.spinner_class);
          spinnerSection=view.findViewById(R.id.spinner_section);
-
         spinnerComplaintType= view.findViewById(R.id.spinner_complaint_type);
         spinnerState= view.findViewById(R.id.spinner_state);
 
@@ -86,23 +78,19 @@ public class LogComplaintFragment extends Fragment {
                  selectedComplaintType = parent.getItemAtPosition(position).toString();
                 textViewComplaintTypeLabel.setText(selectedComplaintType);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // Handle the case when nothing is selected
             }
         });
-
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                  selectedState=parent.getItemAtPosition(position).toString();
             textViewStateLabel.setText(selectedState);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -133,7 +121,7 @@ public class LogComplaintFragment extends Fragment {
             Call<String> call = apiService.logComplaint(category, subcategory, complaintType, state, noc, complaintDetails);
             call.enqueue(new Callback<String>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                     if (response.isSuccessful()) {
                         // Handle successful response
                         if (response.body() != null) {
@@ -143,6 +131,11 @@ public class LogComplaintFragment extends Fragment {
                                 // Display a success message or perform any additional actions
                                 Toast.makeText(getContext(), "Complaint successfully logged", Toast.LENGTH_LONG).show();
 
+                                // Redirect the user to the HomeFragment
+                                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.fragment_container, new HomeFragment())
+                                        .commit();
                             } else {
                                 Toast.makeText(getContext(), "Complaint Not Logged", Toast.LENGTH_LONG).show();
                                 // Handle unexpected response
@@ -157,19 +150,13 @@ public class LogComplaintFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                     // Handle the failure
+                    Toast.makeText(getContext(), "Failed to connect to server", Toast.LENGTH_LONG).show();
                     // Display an error message or handle the failure appropriately
                 }
             });
-
         });
-
-
-
-
-
-
         return view;
     }
     private void fetchCategories() {
@@ -264,10 +251,8 @@ public class LogComplaintFragment extends Fragment {
                 }
             }
         };
-
         fetchCategoriesTask.execute();
     }
-
     private List<String> getCategoryNames(List<Category> categoryList) {
         List<String> categoryNames = new ArrayList<>();
         for (Category category : categoryList) {
@@ -275,7 +260,6 @@ public class LogComplaintFragment extends Fragment {
         }
         return categoryNames;
     }
-
     private void fetchSubcategories(String selectedCategoryId) {
         AsyncTask<String, Void, String> fetchSubcategoriesTask = new AsyncTask<String, Void, String>() {
             @Override
@@ -302,7 +286,6 @@ public class LogComplaintFragment extends Fragment {
                         while ((line = reader.readLine()) != null) {
                             responseBuilder.append(line);
                         }
-
                         return responseBuilder.toString();
                     } else {
                         // Handle the error case
@@ -315,10 +298,8 @@ public class LogComplaintFragment extends Fragment {
                     e.printStackTrace();
                     // Handle the exception
                 }
-
                 return null;
             }
-
             @Override
             protected void onPostExecute(String response) {
                 if (response != null) {
@@ -351,15 +332,6 @@ public class LogComplaintFragment extends Fragment {
                                 // Handle the case when nothing is selected
                             }
                         });
-
-
-
-
-
-
-
-
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                         // Handle the exception
@@ -367,10 +339,8 @@ public class LogComplaintFragment extends Fragment {
                 }
             }
         };
-
         fetchSubcategoriesTask.execute(selectedCategoryId);
     }
-
     // Category class to store the ID and name
     private class Category {
         private String id;

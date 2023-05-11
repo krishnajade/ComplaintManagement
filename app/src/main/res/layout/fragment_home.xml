@@ -5,7 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
+<!--<total>-->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_margin="8dp"
+            style="@style/CardViewStyle">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/total_complaints_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total Complaints"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_below="@id/total_complaints_number"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </TableRow>
+<!--   NOt processed <>-->
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -26,7 +66,7 @@
                     android:id="@+id/complaints_not_processed_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    android:text=""
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:layout_alignParentTop="true"
@@ -67,7 +107,7 @@
                     android:id="@+id/complaints_status_in_process_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
+                    android:text=""
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:layout_alignParentTop="true"
@@ -108,7 +148,7 @@
                     android:id="@+id/complaints_closed_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
+                    android:text=""
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:layout_alignParentTop="true"
