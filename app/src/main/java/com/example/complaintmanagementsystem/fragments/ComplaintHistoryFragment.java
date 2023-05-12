@@ -50,7 +50,6 @@ public class ComplaintHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_complaint_history, container, false);
 
-
         complaintTable = view.findViewById(R.id.complaint_table);
         return view;
     }
@@ -71,14 +70,12 @@ public class ComplaintHistoryFragment extends Fragment {
                     }
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<List<ComplaintHistoryResponse>> call, @NonNull Throwable t) {
                 // Handle failure
             }
         });
     }
-
     private void addTableRow(ComplaintHistoryResponse complaint) {
         TableRow row = new TableRow(requireContext());
 
@@ -106,7 +103,6 @@ public class ComplaintHistoryFragment extends Fragment {
         TableRow.LayoutParams statusParams = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.2f);
         statusTextView.setLayoutParams(statusParams);
         row.addView(statusTextView);
-
 
         complaintTable.addView(row);
     }

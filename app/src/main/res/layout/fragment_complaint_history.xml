@@ -5,52 +5,65 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ComplaintHistoryFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Complaint History:"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TableLayout
-        android:id="@+id/complaint_table"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp">
+        android:layout_height="match_parent">
 
-        <!-- Table Header Row -->
-        <TableRow>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Complaint Number"
-                android:textStyle="bold"
-                android:layout_weight="0.2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registration Date"
-                android:textStyle="bold"
-                android:layout_weight="0.4"
-                android:paddingLeft="10dp"/>
+                android:text="Your Complaint History:"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="0dp"
+            <TableLayout
+                android:id="@+id/complaint_table"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Last Updation Date"
-                android:textStyle="bold"
-                android:layout_weight="0.4"/>
+                android:layout_marginTop="25dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                android:textStyle="bold"
-                android:layout_weight="0.2"/>
-        </TableRow>
+                <!-- Table Header Row -->
+                <TableRow>
 
-    </TableLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Complaint Number"
+                        android:textStyle="bold"
+                        android:layout_weight="0.2"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Registration Date"
+                        android:textStyle="bold"
+                        android:layout_weight="0.4"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Last Updation Date"
+                        android:textStyle="bold"
+                        android:layout_weight="0.4"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textStyle="bold"
+                        android:layout_weight="0.2"/>
+                </TableRow>
+
+                <!-- Add your table rows here -->
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

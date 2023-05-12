@@ -22,7 +22,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
     private EditText etUsername, etPassword;
     private ApiService apiService;
     private static final int REQUEST_CODE_PERMISSIONS = 100;
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     }
     private void login(String username, String password) {
         apiService.login(username, password).enqueue(new Callback<String>() {
-
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
 

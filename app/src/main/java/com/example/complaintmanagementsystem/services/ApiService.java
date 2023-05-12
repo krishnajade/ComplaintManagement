@@ -4,11 +4,8 @@ import com.example.complaintmanagementsystem.models.ComplaintHistoryResponse;
 import com.example.complaintmanagementsystem.models.ComplaintResponse;
 
 import java.util.List;
-import java.util.Map;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -39,5 +36,4 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("calls.php?apicall=complhist")
     Call<List<ComplaintHistoryResponse>> getUserComplaintsHistory(@Field("userId") String userId);
-
 }

@@ -23,4 +23,3 @@ public class UserData {
         this.userId = userId;
     }
 }
-

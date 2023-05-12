@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
             userId = getArguments().getString(ARG_USER_ID);
         }
 
+        //Set userid in userdata class to use it throughout the app
         UserData.getInstance().setUserId(userId);
 
         retrofit = new Retrofit.Builder()
@@ -87,7 +88,6 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     ComplaintResponse complaintResponse = response.body().get(0);
                     // Pass the userId to the ComplaintHistoryFragment
-
 
                     String totalComplaints = complaintResponse.getTotalComplaints();
                     String notProcessedYet = complaintResponse.getNotProcessedYet();
