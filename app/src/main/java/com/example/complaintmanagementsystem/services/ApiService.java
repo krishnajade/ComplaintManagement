@@ -1,5 +1,6 @@
 package com.example.complaintmanagementsystem.services;
 
+import com.example.complaintmanagementsystem.models.ComplaintDetailsResponse;
 import com.example.complaintmanagementsystem.models.ComplaintHistoryResponse;
 import com.example.complaintmanagementsystem.models.ComplaintResponse;
 
@@ -37,4 +38,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("calls.php?apicall=complhist")
     Call<List<ComplaintHistoryResponse>> getUserComplaintsHistory(@Field("userId") String userId);
+
+
+    @FormUrlEncoded
+    @POST("calls.php?apicall=compview")
+    Call<List<ComplaintDetailsResponse>> getComplaintDetails(@Field("complaintNumber") String complaintNumber);
 }

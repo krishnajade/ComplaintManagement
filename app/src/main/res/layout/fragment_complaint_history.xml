@@ -58,9 +58,13 @@
                         android:text="Status"
                         android:textStyle="bold"
                         android:layout_weight="0.2"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Action"
+                        android:textStyle="bold"
+                        android:layout_weight="0.2"/>
                 </TableRow>
-
-                <!-- Add your table rows here -->
 
             </TableLayout>
         </LinearLayout>
