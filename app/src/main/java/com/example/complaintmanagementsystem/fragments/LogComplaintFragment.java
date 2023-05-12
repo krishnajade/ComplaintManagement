@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.complaintmanagementsystem.R;
+import com.example.complaintmanagementsystem.models.UserData;
 import com.example.complaintmanagementsystem.services.ApiService;
 
 import org.json.JSONArray;
@@ -42,6 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LogComplaintFragment extends Fragment {
     Spinner spinnerCategory,spinnerSection,spinnerComplaintType,spinnerState;
     private List<Category> categoryList;
+    private static String userId = UserData.getInstance().getUserId();
     TextView textViewCategoryLabel,textViewComplaintTypeLabel,textViewStateLabel,textViewSectionLabel ;
     String selectedCategoryId;
     String selectedSection;
@@ -118,7 +120,7 @@ public class LogComplaintFragment extends Fragment {
             // Create an instance of the API interface
             ApiService apiService = retrofit.create(ApiService.class);
             // Make the API call
-            Call<String> call = apiService.logComplaint(category, subcategory, complaintType, state, noc, complaintDetails);
+            Call<String> call = apiService.logComplaint(category, subcategory, complaintType, state, noc, complaintDetails,userId);
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

@@ -23,7 +23,8 @@ public interface ApiService {
             @Field("complaintType") String complaintType,
             @Field("state") String state,
             @Field("noc") String noc,
-            @Field("complaintDetails") String complaintDetails
+            @Field("complaintDetails") String complaintDetails,
+            @Field("userId") String userId
     );
     @FormUrlEncoded
     @POST("calls.php?apicall=readuserid")
