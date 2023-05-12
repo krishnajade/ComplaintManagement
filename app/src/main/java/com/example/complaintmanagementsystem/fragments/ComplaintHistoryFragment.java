@@ -169,7 +169,6 @@ public class ComplaintHistoryFragment extends Fragment {
                 }
             });
         });
-
         complaintTable.addView(row);
     }
 
